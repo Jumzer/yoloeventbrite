@@ -1,4 +1,6 @@
 # README
+Hello !
+Le site est accessible ici : https://yoloeventbrite.herokuapp.com/
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

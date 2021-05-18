@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Yoloeventbrite</title>
+    <title>TheHackingEventbrite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+<header class="d-flex justify-content-center py-3 bg-dark text-light">
+    <ul class="nav nav-pills ">
+      <li class="nav-item "><%= link_to "Home", root_path, class: "nav-link text-light"%></li>
+              
+      <%if user_signed_in? %> 
+        <li class="nav-item "><%= link_to "Créer un évènement", new_event_path, class: "nav-link text-light"%></li>
+
+        <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle active bg-warning text-dark " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mon profil</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item"><%= link_to "Mon profil", user_path(current_user.id), class: "nav-link" %></li>
+          <li class="dropdown-item"><%= link_to "Se déconnecter", destroy_user_session_path, class: "nav-link", method: :delete %></li>
+        </ul>
+        </li>
+
+      <% else %>
+
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle active bg-warning text-dark " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rejoindre la communauté</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item"><%= link_to 'Se connecter', new_user_session_path%></li>
+          <li class="dropdown-item"><%= link_to "Rejoindre la communauté", new_user_registration_path%></li>
+        </ul>
+      </li>
+
+      <% end %>
+
+    </ul>
+  </header>
     <%= yield %>
   </body>
+  <footer>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+-->
+</footer>
 </html>
